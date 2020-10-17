@@ -1,0 +1,36 @@
+{
+  "name": "@ehyw/allergies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/lib-common/index.js",
+  "module": "dist/lib-modules/index.js",
+  "files": [
+    "dist/"
+  ],
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/kumarswengineer/ehryw/_packaging/ehryw/npm/registry/",
+    "access": "public",
+    "tag": "@ehyw"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "publish": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "bower": "^1.8.8",
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.1.1",
+    "html-loader": "^1.3.2",
+    "imports-loader": "^1.2.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.0.0"
+  }
+}

@@ -1,0 +1,49 @@
+﻿
+<!--<script>
+    $(function () {
+        var container = $("#frmAllergiesAddEditFreeText");
+        kendo.init(container);
+        container.kendoValidator({
+            rules: {
+                validmask: function (input) {
+                    if (input.is("[data-validmask-msg]") && input.val() != "") {
+                        var maskedtextbox = input.data("kendoMaskedTextBox");
+                        return maskedtextbox.value().indexOf(maskedtextbox.options.promptChar) === -1;
+                    }
+                    return true;
+                }
+            }
+        });
+    });
+
+</script>-->
+
+
+<!-- PURPOSE: The purpose of this View is to Add and edit free text in Allergies -->
+<!-- CREATED BY: Mahesh P-->
+<!-- CREATED DATE: 01/23/2015 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+<form name="frmAllergiesAddEditFreeText" id="frmAllergiesAddEditFreeText"  novalidate role="form">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();">×</i>
+            <label class="ModalPopupHeadings" ng-bind="allergiesAddEditFreeTextPageTitle"></label>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label><span class="mandatory">*</span>Enter Free Text</label>
+                        <textarea id="txtAllergiesAddEditFreeText" tabindex="27001"  name="Enter Free Text" focus-on-default focus-on-demand focus-me="AllergiesAddEditFreeTextFocus" style="min-height:75px;resize:none" maxlength="1024" ng-model="allergiesAddEditFreeText" class="form-control"></textarea>
+                        <!--<span data-for='txtAllergiesAddEditFreeText'></span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center form-group">
+                <input type="submit" class="btn btn-success" id="btnAllergiesAddEditFreeTextSave" tabindex="27002" ng-click="allergiesFreeTextAddEditUpdate();" value="Save" style="width:70px" />
+                <input type="button" class="btn btn-default" tabindex="27003" data-dismiss="modal" ng-click="Cancel();" value="Cancel" style="width:70px"/>
+            </div>
+        </div>
+    </div>
+</form>

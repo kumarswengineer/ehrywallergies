@@ -1,0 +1,44 @@
+﻿<!-- PURPOSE: The purpose of this View is to get the Source of Hx -->
+<!-- CREATED BY: Priyanka G -->
+<!-- CREATED DATE:05/27/2015 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+<style type="text/css">
+    .AllergiesSourceofHxGrid .k-grid-content {
+        width: 100%;
+        height: 230px;
+    }
+</style>
+
+<form id="frmSourceofHx" name="frmSourceofHx" method="post" role="form" cng-controller="AllergiesSourceofHxController">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();">×</i>
+            <label class="ModalPopupHeadings">Select Source of Hx</label>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <!--<div id="DefaultOfcList" class="containerDiv">
+                            <ul class="rowDiv" style="-webkit-padding-start:5px;">
+                                <li class="cellDiv">
+                                    <div></div>
+                                </li>
+                            </ul>
+                         
+                        </div>-->
+                        <div kendo-grid="allergiesSourceofHxWidgets.grdallergiesSourceofHxList" id="AllergiesSourceofHxGrid" class="AllergiesSourceofHxGrid gridWith5rows_sm" options="allergiesSourceofHxGridOptions"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-12 form-group">
+                    <button type="button"  class="btn btn-default" style="width:70px;" ng-click="Cancel();">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

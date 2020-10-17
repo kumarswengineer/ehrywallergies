@@ -1,0 +1,143 @@
+﻿<!-- PURPOSE: The purpose of this view is to allow user to view Allergies info -->
+<!-- CREATED BY: Mahesh P
+<!-- CREATED DATE: 12/11/2014 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+<style>
+    .gridallergiesMainView .k-grid-content {
+        height: 330px;
+        overflow-x: hidden;
+        border: 1px solid rgb(212, 212, 212);
+    }
+
+    @media(min-width:550px) {
+        .allergiesPopupButtonsStyleClass {
+            padding-left: 5px;
+        }
+    }
+</style>
+
+<style type="text/css">
+    #divAllergiesMainViewGrid .k-grid-header {
+        display: none;
+    }
+</style>
+
+<form id="frmAllergiesPopup" name="frmAllergiesPopup" ng-if="$scope.EMRDataFromPopup">
+    <div destroy-element>
+        <div ng-show="allergiesPopupShowAllergiesInformation">
+            <div class="popup-header">
+                <span class="pull-right">
+                    <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="OK();">×</i>
+                    <div ng-hide="htmlTemplatesCreateNewSaveButtonVisible" class="brankic-expand" uib-tooltip="Maximize"
+                        aria-hidden="true" ng-click="Maximize($event);"
+                        style="font-size:25px;color : white;cursor : pointer;padding-right : 10px;margin-top : 7px;">
+                    </div>
+                </span>
+                <span class="pull-right" style="margin-top:10px;">
+                    <span uib-tooltip="Help Topics" ng-click="$parent.$parent.emrHomeShowHelpFile('Help Topics');"
+                        ng-enter="$parent.$parent.emrHomeShowHelpFile('Help Topics');"
+                        class="entypo-question entypoQuestionStyles"></span>
+                </span>
+                <span class="pull-right" style="margin-right:10px;">
+                    <button class="btn btn-primary" style="width:70px;border-color:white;" tabindex="22206"
+                        ng-enter="allergiesOKClick();" ng-click="allergiesOKClick();">OK</button>
+                    <!--<button class="btn btn-default" ng-enter="OK();" tabindex="22207" ng-click="OK();" data-dismiss="modal">Cancel</button>-->
+                </span>
+                <label class="ModalPopupHeadings" ng-bind="AllergiesPopupHeader"></label>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <span style="display:inline">
+                                <span class="Addicon" uib-tooltip="Add" emr-focus-class tabindex="22201"
+                                    style="font-size:28px;cursor:pointer;background-size:90%;vertical-align:middle"
+                                    ng-click="allergiesMainViewAddNew();" ng-enter="allergiesMainViewAddNew();"></span>
+                                <span id="allergiesEditIcon" uib-tooltip="Edit" emr-focus-class tabindex="22202"
+                                    class='brankic-edit'
+                                    style="font-size:27px;padding-left:10px;cursor:pointer;vertical-align:sub;margin-left:5px"
+                                    ng-click='allergiesMainViewEditAllergie();'
+                                    ng-enter="allergiesMainViewEditAllergie();"></span>
+                                <span id="allergiesDeleteIcon" uib-tooltip="Delete" emr-focus-class tabindex="22203"
+                                    class='crossmarkclose'
+                                    style='font-size:28px;cursor:pointer;vertical-align:-webkit-baseline-middle;margin-left:10px'
+                                    ng-click='allergiesMainViewDeleteAllergie();'
+                                    ng-enter="allergiesMainViewDeleteAllergie();"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div kendo-grid="allergiesWidget.allergiesMainViewGrid" tabindex="22204"
+                                class="gridallergiesMainView" emr-grid id="divAllergiesMainViewGrid"
+                                options="allergiesMainViewGridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center form-group allergiesPopupButtonsStyleClass">
+                    <button name="btnNoKnownDrugAllergies" class="btn btn-primary" tabindex="22205"
+                        ng-enter="allergiesNoKnownDrugAllergiesClick();"
+                        ng-click="allergiesNoKnownDrugAllergiesClick();" style="width: 173px">No Known Drug
+                        Allergies</button>
+                    <button name="btnNoKnownAllergies" class="btn btn-primary" tabindex="22206"
+                        ng-show="allergiesNoKnownAllergiesShow" ng-enter="allergiesNoKnownAllergiesClick();"
+                        ng-click="allergiesNoKnownAllergiesClick();" style="width: 146px">No Known Allergies</button>
+                    <button name="btnClearDataInField" class="btn btn-primary" tabindex="22207"
+                        ng-enter="allergiesClearDataClick();" ng-click="allergiesClearDataClick();"
+                        style="width: 88px;">Clear Data</button>
+                    <button class="btn btn-primary" title="OK & Overwrite" tabindex="22208" style="width:63px;"
+                        ng-enter="allergiesOKClick();" ng-click="allergiesOKClick();">OK</button>
+                    <!--<button name="btnOKandAppend" uib-tooltip="OK & Append" id="btnOKandAppend" style="width:70px" tabindex="22207" class="btn btn-primary" ng-show="btnOKandAppendAllergiesShowHide" ng-click="allergiesOKClickAndAppend();" ng-enter="allergiesOKClickAndAppend();">OK+</button>-->
+
+
+                    <button class="btn btn-default" style="width:70px;" ng-enter="OK();" tabindex="22209"
+                        ng-click="OK();" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="allergiesPopupShowAllergiesInformation">
+            <div class="emr_info" style="cursor: default; text-align: center; margin-top: 120px">
+                <span class="entypo-info2" style="vertical-align: middle; padding-right: 5px; font-size: 30px;"></span>
+                <label
+                    style="font-size: 20px; word-spacing: 3px; cursor: default; text-align: center; font-weight: 100; margin-bottom: 0px; font-family: initial;"
+                    ng-bind="allergiesPopupEmrPermissionShowingMessage"></label>
+            </div>
+            <div style="cursor: default; text-align: center; margin-bottom: 120px">
+                <button class="btn btn-default" tabindex="22210" style="width:70px;" ng-enter="Cancel();"
+                    ng-click="Cancel();">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+<form id="frmAllergiesMainView" name="frmAllergiesMainView" ng-if="!$scope.EMRDataFromPopup">
+    <div destroy-element>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Allergies</label>
+                        <span class="input-group-addon-icons" style="display:inline">
+                            <span class="Addicon" tabindex="19301"
+                                style="font-size:25px;cursor:pointer;vertical-align:top" id="allergiesAddIcon"
+                                ng-click="allergiesMainViewAddNew();"></span>
+                            <span id="allergiesEditIcon" tabindex="19302" class='brankic-edit'
+                                style="font-size:27px;padding-left:10px;cursor:pointer;vertical-align:sub;margin-left:5px"
+                                ng-click='allergiesMainViewEditAllergie();'></span>
+                            <span id="allergiesDeleteIcon" tabindex="19303" class='crossmarkclose'
+                                style='font-size:27px;cursor:pointer;vertical-align:text-top;margin-left:10px'
+                                ng-click='allergiesMainViewDeleteAllergie();'></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div kendo-grid="allergiesWidget.allergiesMainViewGrid" class="gridWithTop1Row" emr-grid
+                id="divAllergiesMainViewGrid" options="allergiesMainViewGridOptions"></div>
+        </div>
+    </div>
+</form>

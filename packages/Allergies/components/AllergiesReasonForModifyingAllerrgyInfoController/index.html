@@ -1,0 +1,46 @@
+﻿<!--//*******PURPOSE: The purpose of the VIEW is used to set the reason for modifying the allergies info
+//*******EFFECTIVE FILES: Views/Allergies/..
+//*******CREATED BY: Mahesh P
+//*******CREATED DATE: 03/02/2015
+//*******MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+
+
+<style>
+    .reasonForModifyAllergiesGrid .k-grid-content {
+        height: 210px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+
+<form id="frmReasonForModifyingAllerrgyInfo" name="frmReasonForModifyingAllerrgyInfo" ng-controller="AllergiesReasonForModifyingAllerrgyInfoController">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="OK();">×</i>
+            <label class="ModalPopupHeadings">Reason for Modifying Allergy</label>
+            <i id="btnReasonsForModifyingAllergyMoreOptions" emr-focus-class uib-tooltip="{{reasonsForModifyingAllergyMoreOptions}}" focus-on-default tabindex="771201" style="font-size:20px;cursor:pointer;vertical-align:text-top;color:white;margin-left:10px" ng-click="reasonsForModifyingAllergyViewClick();" ng-enter="reasonsForModifyingAllergyViewClick();" class="DetailIcon"></i>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div emr-grid tabindex="771202" kendo-grid="reasonForModiftyingAlllegiesWidgets.reasonForModifyAllergiesGrid" options="reasonForModifyAllergiesGridOptions" id="divreasonForModifyAllergiesGrid" class="reasonForModifyAllergiesGrid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="allergiesReasonForModifyingAllerrgyDetialView">
+                <div class="col-md-12 form-group">
+                    <label>Enter Reason</label>
+                    <textarea style="resize:none" tabindex="771203" rows="3" maxlength="1024" focus-on-default focus-on-demand focus-me="reasonForModifyingAlleriesFreeTextFocus" ng-model="reasonForModifyingAlleriesFreeText" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="form-group text-center">
+                     <button ng-show="allergiesReasonForModifyingAllerrgyDetialView" ng-click="reasonForModifyingAllergyOK();" tabindex="771204" ng-enter="reasonForModifyingAllergyOK();" class="btn btn-primary" style="width : 90px">OK</button>
+                     <button ng-click="OK();" ng-enter="OK();" tabindex="771205" class="btn btn-default" style="width:90px;">Cancel</button>
+                 </div>
+            </div>
+        </div>
+    </div>
+</form>

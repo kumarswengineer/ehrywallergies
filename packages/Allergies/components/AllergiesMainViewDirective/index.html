@@ -1,0 +1,70 @@
+﻿<div>
+    <style>
+        .allergiesMainViewDirectiveMainGridClass .k-grid-content {
+            height: 365px;
+        }
+        @media(max-width:500px) {
+            #divAllergiesMainViewIconsStyles {
+                white-space: nowrap;
+                top: -11px;
+            }
+        }
+        @media(min-width:500px) {
+            #divAllergiesMainViewIconsStyles {
+                white-space: nowrap;
+                top: -9px;
+                padding-left:0px;
+            }
+        }
+    </style>
+    <form id="frmAllergiesMainViewDirective" name="frmAllergiesMainViewDirective" method="post" role="form">
+        <div destroy-element>
+            <div class="popup-header">
+
+                <label class="ModalPopupHeadings" ng-bind="allergiesMainviewDirectiveHeader" title="{{allergiesMainviewDirectiveHeader}}" style="white-space:nowrap;width:90%;overflow:hidden;text-overflow:ellipsis;">Allergies</label>
+
+                <span class="pull-right">
+                    <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="allergiesMainViewDirectiveCancel();">×</i>
+
+                    <div class="brankic-expand" uib-tooltip="Maximize" aria-hidden="true" ng-click="allergiesMainViewDirectiveMaximize($event);" style="font-size: 25px; color: white; cursor: pointer; padding-right: 10px; margin-top: 7px;"></div>
+                </span>
+
+                <span class="pull-right" style="margin-top:10px;">
+                    <span uib-tooltip="Help File" ng-click="$parent.$parent.emrHomeShowHelpFile('Allergies Main View Directive');"
+                          ng-enter="$parent.$parent.emrHomeShowHelpFile('Allergies Main View Directive');" class="entypo-question entypoQuestionStyles"></span>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 colReq-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <input type="text" tabindex="159701" class="form-control" focus-on-default placeholder="Search Allergy" maxlength="256" ng-model="allergiesMainViewDirectiveSearchAllergy"
+                                   id="divAllergiesMainViewDirectiveSearchAllergy_{{AllergiesMainViewDirectiveGUID}}" ng-enter="allergiesMainViewGetPastHistoryAllergiesList();" name="divAllergiesMainViewDirectiveSearchAllergy" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 colReq-sm-4 col-xs-5" style="white-space:nowrap;" id="divAllergiesMainViewIconsStyles">
+                        <span id="spanAllergiesMainViewDirectiveAddIcon_{{AllergiesMainViewDirectiveGUID}}" class="Addicon" uib-tooltip="Add" emr-focus-class tabindex="159701" style="font-size:25px;cursor:pointer;vertical-align:initial;background-size:90%;margin-left:5px" ng-click="allergiesMainViewDirectiveAddClickEvent();" ng-enter="allergiesMainViewDirectiveAddClickEvent();"></span>
+                        <span id="spanAllergiesMainViewDirectiveEditIcon_{{AllergiesMainViewDirectiveGUID}}" class="brankic-edit" uib-tooltip="Edit" emr-focus-class tabindex="159702" style="font-size:27px;cursor:pointer;vertical-align:initial;margin-left:4px" ng-click="allergiesMainViewDirectiveEditClickEvent();" ng-enter="allergiesMainViewDirectiveEditClickEvent();"></span>
+                        <span id="spanAllergiesMainViewDirectiveDeleteIcon_{{AllergiesMainViewDirectiveGUID}}" emr-focus-class uib-tooltip="Delete" tabindex="159703" class='crossmarkclose' style='font-size:25px;cursor:pointer;vertical-align:middle;margin-left:5px' ng-click="allergiesMainViewDirectiveDeleteClickEvent();" ng-enter="allergiesMainViewDirectiveDeleteClickEvent();"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div kendo-grid="allergiesMainViewDirectiveMainGridWidgets.grdAllergiesMainViewDirectiveMainGridInfo" class="allergiesMainViewDirectiveMainGridClass gridWith5rows_sm" emr-grid id="divAllergiesMainViewDirectiveMainGrid_{{AllergiesMainViewDirectiveGUID}}" options="allergiesMainViewDirectiveMainGridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="colReq-sm-12" style="text-align: center">
+                        <div class="form-group">
+                            <!--  <button id="btnAllergiesMainViewDirectiveOk_{{AllergiesMainViewDirectiveGUID}}" ng-click="allergiesMainViewDirectiveOk();" ng-enter="allergiesMainViewDirectiveOk();" type="button" style="width: 70px;" tabindex="159705" data-dismiss="modal" class="btn btn-primary">OK</button>-->
+                            <button id="btnAllergiesMainViewDirectiveCancel_{{AllergiesMainViewDirectiveGUID}}" ng-click="allergiesMainViewDirectiveCancel();" ng-enter="allergiesMainViewDirectiveCancel();" type="button" style="width: 70px;" tabindex="159706" data-dismiss="modal" class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

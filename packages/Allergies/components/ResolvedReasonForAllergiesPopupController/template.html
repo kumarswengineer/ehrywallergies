@@ -1,0 +1,81 @@
+﻿
+
+<div>
+
+    <form id="frmResolvedReasonForAllergiesPopup" name="frmResolvedReasonForAllergiesPopup" method="post" role="form">
+        <style type="text/css">
+            .resolvedReasonForAllergiesPopupGridClass .k-grid-content {
+                height: 290px;
+                width: 100%;
+            }
+        </style>
+
+        <div destroy-element>
+            <div class="popup-header">
+
+                <label class="ModalPopupHeadings">Change Status</label>
+                <i id="btnResolvedReasonForAllergiesPopupMoreOptions_{{resolvedReasonForAllergiesPopupGUID}}" ng-show="resolvedReasonForAllergiesPopupDetailIconShow" tabindex="158901" uib-tooltip="{{resolvedReasonForAllergiesPopupDetailViewBriefViewIconTitle}}" focus-on-default style="font-size:15px;vertical-align:baseline;background-size:65%;cursor:pointer;color:white;margin-left:10px" ng-enter="resolvedReasonForAllergiesPopupDetailViewBriefViewIconClick();" ng-click="resolvedReasonForAllergiesPopupDetailViewBriefViewIconClick();" class="DetailIcon"></i>
+
+                <span class="pull-right">
+                    <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="resolvedReasonForAllergiesPopupCancel();">×</i>
+
+                    <div class="brankic-expand" uib-tooltip="Maximize" aria-hidden="true" ng-click="resolvedReasonForAllergiesPopupMaximize($event);" style="font-size: 25px; color: white; cursor: pointer; padding-right: 10px; margin-top: 7px;"></div>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="row" ng-show="resolvedReasonForAllergiesPopupIconsShow">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <span id="spanResolvedReasonForAllergiesPopupAdd_{{resolvedReasonForAllergiesPopupGUID}}" class="icomoon-plus" uib-tooltip="Add" emr-focus-class tabindex="158902" style="font-size:20px;cursor:pointer;vertical-align:middle" ng-enter="resolvedReasonForAllergiesPopupAddClick();" ng-click="resolvedReasonForAllergiesPopupAddClick();"></span>
+                            <span id="spanResolvedReasonForAllergiesPopupEdit_{{resolvedReasonForAllergiesPopupGUID}}" emr-focus-class tabindex="158903" uib-tooltip="Edit" class="brankic-edit" style="font-size:25px;padding-left:10px;cursor:pointer;vertical-align:middle" ng-enter="resolvedReasonForAllergiesPopupEditClick();" ng-click="resolvedReasonForAllergiesPopupEditClick();"></span>
+                            <span id="spanResolvedReasonForAllergiesPopupDelete_{{resolvedReasonForAllergiesPopupGUID}}" emr-focus-class tabindex="158904" uib-tooltip="Delete" class="crossmarkclose" style="font-size:15px;cursor:pointer;vertical-align:bottom;" ng-enter="resolvedReasonForAllergiesPopupDeleteClick();" ng-click="resolvedReasonForAllergiesPopupDeleteClick();"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="colReq-sm-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select focus-on-default id="ddlResolvedReasonForAllergiesPopupStatus_{{resolvedReasonForAllergiesPopupGUID}}" tabindex="158905" name="ddlResolvedReasonForAllergiesPopupStatus" k-height="420" ng-model="resolvedReasonForAllergiesPopupStatus" k-value="resolvedReasonForAllergiesPopupStatus" k-on-change="resolvedReasonForAllergiesPopupStatusOptionChange();"
+                                    kendo-drop-down-list="resolvedReasonForAllergiesPopupWidgets.ddlResolvedReasonForAllergiesPopupInfo"
+                                    k-data-text-field="'ResolvedReasonForAllergiesPopupStatusOption'"
+                                    k-data-value-field="'ResolvedReasonForAllergiesPopupStatusOptionId'"
+                                    k-data-source="resolvedReasonForAllergiesPopupStatusDropdownDataSource"></select>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="resolvedReasonForAllergiesPopupGridShow">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div emr-grid kendo-grid="resolvedReasonForAllergiesPopupWidgets.grdResolvedReasonForAllergiesPopupWidgets" id="resolvedReasonForAllergiesPopupWidgetsGrid_{{resolvedReasonForAllergiesPopupGUID}}" class="resolvedReasonForAllergiesPopupGridClass gridWith5rows_sm" options="resolvedReasonForAllergiesPopupGridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" ng-show="resolvedReasonForAllergiesPopupEnterReasonShow">
+                    <div class="colReq-sm-12">
+                        <div class="form-group">
+                            <label>Enter Reason</label>
+                            <textarea focus-on-default tabindex="158907" id="txtResolvedReasonForAllergiesPopupEnterReason_{{resolvedReasonForAllergiesPopupGUID}}" maxlength="1024" class="form-control" name="txtResolvedReasonForAllergiesPopupEnterReason"
+                                      ng-model="resolvedReasonForAllergiesPopupEnterReason" style="resize:vertical;resize:none" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="colReq-sm-12" style="text-align: center">
+                        <div class="form-group">
+                            <button id="btnResolvedReasonForAllergiesPopupOk_{{resolvedReasonForAllergiesPopupGUID}}" ng-click="resolvedReasonForAllergiesPopupOk();" ng-enter="resolvedReasonForAllergiesPopupOk();" ng-show="resolvedReasonForAllergiesPopupOkShow" type="button" style="width: 70px;" tabindex="158908" data-dismiss="modal" class="btn btn-primary">OK</button>
+                            <button id="btnResolvedReasonForAllergiesPopupCancel_{{resolvedReasonForAllergiesPopupGUID}}" ng-click="resolvedReasonForAllergiesPopupCancel();" ng-enter="resolvedReasonForAllergiesPopupCancel();" type="button" style="width: 70px;" tabindex="158909" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>

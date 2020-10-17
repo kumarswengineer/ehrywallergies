@@ -1,0 +1,355 @@
+﻿<!-- PURPOSE: The purpose of this view is to allow user to add or edit Allergies info -->
+<!-- CREATED BY: Mahesh P
+<!-- CREATED DATE: 12/06/2014 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+
+<style>
+    .allergiesDrugsGrid .k-grid-content {
+        height: 290px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .allergiesManifestationsGrid .k-grid-content {
+        height: 290px;
+        overflow-x: hidden;
+        /*overflow-y: auto;*/
+    }
+    .allergiesDrugsGridInDetail .k-grid-content{
+         height: 274px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    @media (min-width: 500px) and (max-width: 1024px) and (orientation: landscape) {
+        .allergiesDrugsGrid .k-grid-content {
+            width: 100%;
+            height: 250px;
+        }
+
+        .allergiesManifestationsGrid .k-grid-content {
+            height: 250px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+
+    @media(max-width:500px) {
+        #divallergiesAddEditPageTitleStyles {
+            white-space: nowrap !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /*width: 71%;*/
+        }
+    }
+    @media(min-width:400px) {
+        .AllergiesAddEditDropDownWidthInDetailView {
+            width: 20%;
+            height: 35px;
+        }
+
+        .AllergiesAddEditSearchWidthInDetailView {
+            width: 25%;
+        }
+
+        .AllergiesAddEditSnomedWidthInDetail {
+            width: 18%;
+        }
+
+        .allergiesAddEditDroDownWidthClass {
+            width: 180px !important;
+        }
+    }
+    @media(min-width:600px) and (max-width:800px){
+        .AllergiesAddEditAllergiesDrugWidthClass{
+            width:100%;
+        }
+    }
+    @media(min-width:1000px){
+        #divAllergicForPatientButtonsStyle{
+            white-space:nowrap;
+            padding-left:13px;
+        }
+        .AdverseReactionWidthClass{
+            width:152px;
+        }
+        .ToleranceWidthClass{
+            width:107px;
+        } 
+        .SelectedAllergicWidthClass{
+            width:81px;
+        }
+        .AllergicForPatientPaddingClass{
+            padding-left:0px;
+        }
+    }
+    @media(min-width:992px) {
+        .AllergiesForPatientAddEditRightButtonClass {
+            width: 14%;
+        }
+    }
+    @media(max-width:992px) {
+        .AllergiesForPatientAddEditRightButtonClass {
+            width: 16%;
+        }
+        .AllergiesForPatientAddEditLeftButtonClass {
+            width: 19%;
+        }
+        .AllergiesForPatientAddEditMiddleButtonClass {
+            width: 66%;
+        }
+    }
+
+    @media(min-width:1200px) {
+        .AllergiesForPatientAddEditMiddleButtonClass {
+            width: 52.6%;
+        }
+    }
+
+    @media(min-width:550px) {
+        .allergiesForPatientAddEditSearchPaddingStyles {
+            padding-left: 0px;
+        }
+    }
+
+    @media(max-width:550px) {
+        .allergiesForPatientAddEditSearchPaddingStyles {
+            padding-bottom: 10px;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width:1200px) {
+        .AllergiesForPatientAddEditMiddleButtonClass {
+            width: 35%;
+        }
+    }
+</style>
+
+<form id="frmAllergiesForPatient" name="frmAllergiesForPatient" ng-controller="AllergiesAddEditController">
+    <div destroy-element>
+
+        <div ng-show="allergiesforpatientAddEditPermissionavailable">
+            <div class="popup-header">
+                <span class="pull-right">
+                    <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="allergiesAddEditAllergicCancelClick();">×</i>
+                    <div ng-hide="htmlTemplatesCreateNewSaveButtonVisible" class="brankic-expand" uib-tooltip="Maximize" aria-hidden="true" ng-click="Maximize($event);" style="font-size:25px;color : white;cursor : pointer;padding-right : 10px;margin-top : 7px;"></div>
+                </span>
+                <span class="pull-right" style="margin-top:10px;">
+                    <span uib-tooltip="Help File" ng-click="$parent.$parent.emrHomeShowHelpFile('patient chart --> allergies');" ng-enter="$parent.$parent.emrHomeShowHelpFile('patient chart --> allergies');" class="entypo-question entypoQuestionStyles"></span>
+                </span>
+                <!--<span class="pull-right" style="margin-right:10px;">
+                    <button class="btn btn-default" tabindex="19412" ng-enter="Cancel();" ng-click="Cancel();">Cancel</button>
+                </span>-->
+
+                <label class="ModalPopupHeadings" ng-bind="allergiesAddEditPageTitle" title="{{allergiesAddEditPageTitle}}" id="divallergiesAddEditPageTitleStyles" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 86%;"></label>
+                <span ng-show="allergiesAddEditDetailShow"><i id="btnAllergiesAddEditBriefAndDetailIcon_{{allergiesAddEditGUID}}" uib-tooltip="{{allergiesAddEditDetailBriefTitle}}" ng-click="allergiesAddEditBriefAndDetailViewClick();" ng-enter="allergiesAddEditBriefAndDetailViewClick();" emr-focus-class style="font-size:20px;cursor:pointer;color:white;vertical-align:text-bottom" class="DetailIcon"></i></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="colReq-sm-5 col-xs-12 AllergiesAddEditAllergiesDrugWidthClass" ng-hide="allergiesEditMode" id="divDrug">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="colReq-sm-4 col-xs-5">
+                                    <label>Allergen Type</label>
+                                    <select focus-on-default id="ddlDrugType" tabindex="19401" k-height="410" name="ddlDrugType" ng-model="allergiesAddEditAllergiesDrugType" k-value="allergiesAddEditAllergiesDrugType" kendo-drop-down-list="allergiesAddEditWidgets.allergiesAddEditddlAllergenType" k-options="allergiesAllergenddlOptions"
+                                            k-data-text-field="'AllergenType'"
+                                            k-data-value-field="'AllergenTypeID'"
+                                            k-data-source="allergiesAddEditAllergenTypeList"></select>
+                                </div>
+                                <div class="colReq-sm-6 col-xs-4" style="padding-right:0px;padding-top: 22px;padding-left: 0px;">
+                                    <input type="text" maxlength="100" tabindex="19402" class="form-control" focus-on-demand focus-me="txtSearchDrugFocus" focus-on-default ng-model="allergiesAddEditSearchDrug" name="txtAllergiesDrugSearch" id="txtAllergiesDrugSearch_{{allergiesAddEditGUID}}" placeholder="Search Allergen" ng-enter="allergiesAddEditGetTheDrugListBasedOnSearch();" />
+                                </div>
+                                <div class="colReq-sm-2 col-xs-2" style="padding-top: 22px;">
+                                    <button class="btn btn-primary" style="height: 33px; margin-top: 0px; padding-top: 5px; width: 39px; padding-left: 8px;vertical-align:top" tabindex="19403" ng-enter="allergiesForPatientSearchAllergenGOClick();" ng-click="allergiesForPatientSearchAllergenGOClick();">Go</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="allergiesShowVaccinesGrid">
+                            <div kendo-grid="allergiesAddEditWidgets.allergiesAddEditDrugsGrid" tabindex="19404" emr-grid id="divAllergiesAddEditDrugsGrid" options="allergiesAddEditDrugsGridOptions" ng-class="allergiesAddEditDrugsGridHeightClass"></div>
+                        </div>
+                        <div class="form-group" ng-show="allergiesShowVaccinesGrid">
+                            <div kendo-grid="allergiesAddEditWidgets.allergiesAddEditVaccinesGrid" tabindex="19405" emr-grid id="divAllergiesAddEditVaccinesGrid" options="allergiesAddEditVaccinessGridOptions" class="allergiesDrugsGrid gridWith5rows_sm"></div>
+                        </div>
+                        <!--<div class="form-group hideAtMobile">
+                <select id="ddlAllergiesSeverityType" k-height="410" name="ddlAllergiesSeverityType" ng-model="allergiesAddEditAllergiesSeverityType" kendo-drop-down-list
+                        k-data-text-field="'AllergySeverityType'"
+                        k-data-value-field="'AllergySeverityTypeID'"
+                        k-data-source="allergiesAddEditSeverityTypeList"></select>
+            </div>-->
+                    </div>
+                    <div class="colReq-sm-7 col-xs-12 AllergiesAddEditAllergiesDrugWidthClass" id="divManifestations">
+                        <div class="form-group" ng-show="allergiesEditModeSelectedDrug.length">
+                            <label>Allergen </label>
+                            <div>
+                                <i ng-bind="allergiesEditModeSelectedDrug"></i>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="allergiesAddEditManifestationListHideShow">
+                            <div class="row">
+                                <div ng-class="allergiesForPatientAddEditOrganTypeClass">
+                                    <label>Search In</label>
+                                    <select focus-on-default id="ddlOrganType" k-height="410" tabindex="19406" name="ddlOrganType" ng-model="allergiesAddEditAllergiesOrganType" k-value="allergiesAddEditAllergiesOrganType" kendo-drop-down-list
+                                            filter="'contains'"
+                                            k-data-text-field="'AllergiesMenifestationsUserAddedCategoryName'"
+                                            k-data-value-field="'AllergiesMenifestationsUserAddedCategoryID'"
+                                            k-data-source="allergiesAddEditOrgansList" k-on-change="allergiesAddEditGetTheManifestationListBasedOnSearch();"></select>
+                                </div>
+                                <div ng-class="allergiesAddEditDropDownWidthClass" style="padding-left:0px;padding-top: 22px;" ng-show="allergiesAddEditSearchShowInDetailViewTextBox">
+                                    <div class="form-group">
+                                        <select focus-on-default id="ddlAllergiesAddEditDropdown_{{allergiesAddEditGUID}}" tabindex="19407" name="ddlAllergiesAddEditDropdown" k-height="420" ng-model="allergiesAddEditDropdown" k-value="allergiesAddEditDropdown" k-on-change="allergiesAddEditDropdownChange();"
+                                                kendo-drop-down-list="allergiesAddEditWidgets.ddlAllergiesAddEditDropdownList"
+                                                k-on-data-bound="allergiesAddEditDropDownOnDataBound();"
+                                                k-data-text-field="'AllergiesAddEditDropdownOption'"
+                                                k-data-value-field="'AllergiesAddEditDropdownOptionId'"
+                                                k-data-source="allergiesAddEditDropdownDataSource"></select>
+                                    </div>
+                                </div>
+                                <div ng-class="allergiesForPatientAddEditSearchWidthClass" class="allergiesForPatientAddEditSearchPaddingStyles" style="padding-right:0px;padding-top: 22px;">
+                                    <input type="text" class="form-control" tabindex="19408" maxlength="100" focus-on-demand focus-me="txtSearcManifestation" ng-model="allergiesAddEditSearchManifestations" name="txtAllergiesManifestationSearch" id="txtAllergiesManifestationSearch" placeholder="Search Manifestations" ng-enter="allergiesAddEditGetTheManifestationListBasedOnSearch();" />
+                                </div>
+                                <div ng-class="allergiesAddEditSearchSnomedWidthClass" style="padding-right:0px;padding-top: 22px;" ng-show="allergiesAddEditSearchShowInDetailViewTextBox">
+                                    <input type="text" class="form-control" tabindex="19409" maxlength="32" focus-on-demand focus-me="txtSearcSnomedCode" is-numeric ng-model="allergiesAddEditSearchSnomedCode" name="txtAllergiesForPatientSearchSnomedCode" id="txtAllergiesForPatientSearchSnomedCode" placeholder="SNOMED Code" ng-enter="allergiesForPatientSearchManifestationGOClick();" />
+                                </div>
+                                <div class="colReq-sm-1 col-xs-1" style="padding-top: 22px;">
+                                    <button class="btn btn-primary" style="height: 33px; margin-top: 0px; padding-top: 5px; width: 39px; padding-left: 8px;vertical-align:top" tabindex="19410" ng-enter="allergiesForPatientSearchManifestationGOClick();" ng-click="allergiesForPatientSearchManifestationGOClick();">Go</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                <div class="row">
+
+                </div>
+            </div>-->
+                        <div class="row" ng-show="allergiesAddEditSearchManifestationShowHide">
+                            <div class="colReq-sm-9">
+                                <div class="form-group">
+                                    <input type="text" id="txtAllergiesAddEditSearchManifestation_{{allergiesAddEditGUID}}" focus-on-default maxlength="256" tabindex="19411"
+                                           class="form-control" name="txtAllergiesAddEditSearchManifestation" placeholder="Search Manifestation" ng-model="allergiesAddEditSearchManifestations" ng-enter="allergiesAddEditSearchManifestationList();" />
+                                </div>
+                            </div>
+                            <div class="colReq-sm-1" style="padding-left:0px;">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" style="height: 33px; margin-top: 0px; padding-top: 5px; width: 39px; padding-left: 8px;vertical-align:top" tabindex="19412" id="txtAllergiesAddEditGo_{{allergiesAddEditGUID}}" ng-enter="allergiesAddEditSearchManifestationList();" ng-click="allergiesAddEditSearchManifestationList();">Go</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div kendo-grid="allergiesAddEditWidgets.allergiesAddEditManifestationsGrid" emr-grid id="divAllergiesAddEditManifestationGrid" options="allergiesAddEditManifestationGridOptions" class="allergiesManifestationsGrid gridWith5rows_sm"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="colReq-sm-5 col-xs-4">
+                        <div class="form-group">
+                            <div class="form-group" id="divSeverityTypeInEditMode">
+                                <select id="ddlAllergiesSeverityType" k-height="410" tabindex="19413" name="ddlAllergiesSeverityType" ng-model="allergiesAddEditAllergiesSeverityType" k-value="allergiesAddEditAllergiesSeverityType" kendo-drop-down-list
+                                        k-data-text-field="'AllergySeverityType'"
+                                        k-data-value-field="'AllergySeverityTypeID'"
+                                        k-data-source="allergiesAddEditSeverityTypeList"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colReq-sm-7 col-xs-4">
+                        <div class="form-group">
+                            <input type="text" maxlength="255" class="form-control" tabindex="19414" name="txtAllergiesAddEditTypeFreeTextManifestations" id="txtAllergiesAddEditTypeFreeTextManifestations" placeholder="Enter Free Text Manifestations" ng-model="allergiesAddEditTypeFreeTextManifestations" />
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row text-center" style="display:none;">
+        <div class="col-md-12 col-xs-12 AllergicForPatientPaddingClass">
+            <div class="form-group">
+                <div class="form-group">
+                    <span>
+                        <button class="btn btn-primary AdverseReactionWidthClass" tabindex="19421" ng-enter="allergiesAddEditSelectedAdverseReactionClick();" ng-click="allergiesAddEditSelectedAdverseReactionClick();" ng-bind="allergiesAddEditSaveandAddMoreAdverseReactionbtnText">Adverse Reaction +</button>
+                        <button class="btn btn-primary ToleranceWidthClass" tabindex="19422" ng-enter="allergiesAddEditSelectedInToleranceClick();" ng-click="allergiesAddEditSelectedInToleranceClick();" ng-bind="allergiesAddEditSaveandAddMoreIntolerancebtnText">Intolerance +</button>
+                        <button class="btn btn-primary SelectedAllergicWidthClass" tabindex="19423" ng-enter="allergiesAddEditSelectedAllergicClick();" ng-click="allergiesAddEditSelectedAllergicClick();" ng-bind="allergiesAddEditSaveandAddMoreAllergicbtnText">Allergic +</button>
+                    </span>
+                    <span>
+                        <button class="btn btn-primary" tabindex="19415" ng-show="allergiesAddEditpageNoKnownAllergiesButtonShowHide" ng-bind="allergiesAddEditpageNoKnownAllergiestext" uib-tooltip="{{allergiesAddEditDetailNameTitle}}" ng-click="allergiesAddEditAllergicNoKnownAllergiesClick();">No Known Alergies</button>
+                        <button class="btn btn-primary" tabindex="19416" ng-show="allergiesForPatientAddEditNoKnownAllergiesShow" ng-click="allergiesAddEditAllergicOnlyNoKnownAllergies1Click();">No Known Allergies</button>
+                        <button class="btn btn-primary" tabindex="19417" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditAdverseReactionClick();" ng-click="allergiesAddEditAdverseReactionClick();">Adverse Reaction</button>
+                        <button class="btn btn-primary" tabindex="19418" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditInToleranceClick();" ng-click="allergiesAddEditInToleranceClick();">Intolerance</button>
+                        <button class="btn btn-primary" tabindex="19419" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditAllergicClick();" ng-click="allergiesAddEditAllergicClick();">Allergic</button>
+                        <button class="btn btn-primary" tabindex="19420" ng-show="allergiesAddEditClearDataShowHide" ng-enter="allergiesAddEditClearDataClick();" ng-click="allergiesAddEditClearDataClick();">Clear Data</button>
+                    </span>
+                    <button class="btn btn-default" tabindex="19424" ng-bind="allergisforPatientCancelButtonText" ng-enter="allergiesAddEditAllergicCancelClick();" ng-click="allergiesAddEditAllergicCancelClick();">Cancel</button><br />
+                </div>
+            </div>
+        </div>
+        <div ng-class="col-md-12 col-xs-12" id="divAllergicForPatientButtonsStyle">
+            <button class="btn btn-primary AdverseReactionWidthClass" tabindex="19421" ng-enter="allergiesAddEditSelectedAdverseReactionClick();" ng-click="allergiesAddEditSelectedAdverseReactionClick();" ng-bind="allergiesAddEditSaveandAddMoreAdverseReactionbtnText">Adverse Reaction +</button>
+            <button class="btn btn-primary ToleranceWidthClass" tabindex="19422" ng-enter="allergiesAddEditSelectedInToleranceClick();" ng-click="allergiesAddEditSelectedInToleranceClick();" ng-bind="allergiesAddEditSaveandAddMoreIntolerancebtnText">Intolerance +</button>
+            <button class="btn btn-primary SelectedAllergicWidthClass" tabindex="19423" ng-enter="allergiesAddEditSelectedAllergicClick();" ng-click="allergiesAddEditSelectedAllergicClick();" ng-bind="allergiesAddEditSaveandAddMoreAllergicbtnText">Allergic +</button>
+            <button class="btn btn-default" tabindex="19424" ng-bind="allergisforPatientCancelButtonText" ng-enter="allergiesAddEditAllergicCancelClick();" ng-click="allergiesAddEditAllergicCancelClick();">Cancel</button>
+        </div>
+    </div>-->
+                <div class="row" ng-hide="allergiesEditMode">
+                    <div class="col-lg-4 col-md-5 colReq-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <span style="white-space: nowrap;">Free Text (Drug Allergy Interaction Warnings will not be</span><br class="hidden-sm hidden-xs" />
+                            <span>Displayed When Prescription Ordered)</span>
+                            <input type="text" class="form-control" maxlength="100" tabindex="19415" id="txtAllergiesForPatientFreeText_{{allergiesAddEditGUID}}" name="txtFosterCareDemographicsMainViewFosterHomeName" ng-model="allergiesForPatientFreeText" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 colReq-sm-12 col-xs-12">
+                        <div class="colReq-sm-2 col-xs-4 text-right AllergiesForPatientAddEditLeftButtonClass" style="padding-right: 0px;">
+                            <button class="btn btn-primary" tabindex="19416" style="height: 70px !important;width: 91px;white-space: normal;" ng-show="allergiesAddEditSearchShowInDetailView" ng-click="allergiesAddEditAllergicOnlyNoKnownAllergiesClick();">No Known Allergies</button>
+                            <button class="btn btn-primary" tabindex="19417" style="height: 70px !important;width: 91px;white-space: normal;" ng-show="allergiesAddEditpageNoKnownAllergiesButtonShowHide" ng-bind="allergiesAddEditpageNoKnownAllergiestext" uib-tooltip="{{allergiesAddEditDetailNameTitle}}" ng-click="allergiesAddEditAllergicNoKnownAllergiesClick();">No Known Alergies</button>
+                            <button class="btn btn-primary" tabindex="19418" style="height: 70px !important;width: 91px;white-space: normal;" ng-show="allergiesForPatientAddEditNoKnownAllergiesShow" ng-click="allergiesAddEditAllergicOnlyNoKnownAllergies1Click();">No Known Allergies</button>
+                        </div>
+                        <div class="colReq-sm-7 col-xs-4 AllergiesForPatientAddEditMiddleButtonClass" style="margin-left: -8px;white-space: nowrap;padding-top:6px;">
+                            <button class="btn btn-primary AdverseReactionWidthClass" tabindex="19419" ng-enter="allergiesAddEditSelectedAdverseReactionClick();" ng-click="allergiesAddEditSelectedAdverseReactionClick();" ng-bind="allergiesAddEditSaveandAddMoreAdverseReactionbtnText">Adverse Reaction +</button>
+                            <button class="btn btn-primary ToleranceWidthClass" tabindex="19420" ng-enter="allergiesAddEditSelectedInToleranceClick();" ng-click="allergiesAddEditSelectedInToleranceClick();" ng-bind="allergiesAddEditSaveandAddMoreIntolerancebtnText">Intolerance +</button>
+                            <button class="btn btn-primary SelectedAllergicWidthClass" tabindex="19421" ng-enter="allergiesAddEditSelectedAllergicClick();" ng-click="allergiesAddEditSelectedAllergicClick();" ng-bind="allergiesAddEditSaveandAddMoreAllergicbtnText">Allergic +</button><br />
+
+                            <button class="btn btn-primary" tabindex="19422" style="width: 152px;" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditAdverseReactionClick();" ng-click="allergiesAddEditAdverseReactionClick();">Adverse Reaction</button>
+                            <button class="btn btn-primary" tabindex="19423" style="width: 108px;" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditInToleranceClick();" ng-click="allergiesAddEditInToleranceClick();">Intolerance</button>
+                            <!--<button class="btn btn-primary" tabindex="19411" ng-enter="allergiesAddEditNotAllergicClick();" ng-click="allergiesAddEditNotAllergicClick();">Not Allergic</button>-->
+                            <button class="btn btn-primary" tabindex="19424" style="width: 80px;" ng-show="allergiesAddEditpageAsverseReactionShowHide1" ng-enter="allergiesAddEditAllergicClick();" ng-click="allergiesAddEditAllergicClick();">Allergic</button>
+                            <button class="btn btn-primary" tabindex="19425" ng-show="allergiesAddEditClearDataShowHide" ng-enter="allergiesAddEditClearDataClick();" ng-click="allergiesAddEditClearDataClick();">Clear Data</button>
+                        </div>
+                        <div class="colReq-sm-1 col-xs-4 text-left AllergiesForPatientAddEditRightButtonClass" style="padding-left: 0px;">
+                            <button class="btn btn-default" tabindex="19426" style="height: 70px;width: 91px;margin-top:4px;" ng-bind="allergisforPatientCancelButtonText" ng-enter="allergiesAddEditAllergicCancelClick();" ng-click="allergiesAddEditAllergicCancelClick();">Cancel</button><br />
+                        </div>
+                    </div>
+                  </div>
+                    <div class="row" ng-show="allergiesEditMode">
+                        <div class="colReq-sm-12 text-center">
+                            <div class="form-group">
+                                <button class="btn btn-primary AdverseReactionWidthClass" tabindex="19427" ng-enter="allergiesAddEditSelectedAdverseReactionClick();" ng-click="allergiesAddEditSelectedAdverseReactionClick();" ng-bind="allergiesAddEditSaveandAddMoreAdverseReactionbtnText">Adverse Reaction +</button>
+                                <button class="btn btn-primary ToleranceWidthClass" tabindex="19428" ng-enter="allergiesAddEditSelectedInToleranceClick();" ng-click="allergiesAddEditSelectedInToleranceClick();" ng-bind="allergiesAddEditSaveandAddMoreIntolerancebtnText">Intolerance +</button>
+                                <button class="btn btn-primary SelectedAllergicWidthClass" tabindex="19429" ng-enter="allergiesAddEditSelectedAllergicClick();" ng-click="allergiesAddEditSelectedAllergicClick();" ng-bind="allergiesAddEditSaveandAddMoreAllergicbtnText">Allergic +</button>
+                                <button class="btn btn-default" tabindex="19430" ng-bind="allergisforPatientCancelButtonText" ng-enter="allergiesAddEditAllergicCancelClick();" ng-click="allergiesAddEditAllergicCancelClick();">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+        </div>
+
+        <div ng-hide="allergiesforpatientAddEditPermissionavailable">
+            <div class="emr_info" style="cursor: default; text-align: center; margin-top: 120px">
+                <span class="entypo-info2" style="vertical-align: middle; padding-right: 5px; font-size: 30px;"></span>
+                <label style="font-size: 20px; word-spacing: 3px; cursor: default; text-align: center; font-weight: 100; margin-bottom: 0px; font-family: initial;" ng-bind="allergiesforpatientAddEditEmrPermissionShowingMessage"></label>
+            </div>
+            <div style="cursor: default; text-align: center; margin-bottom: 120px">
+                <button class="btn btn-default" tabindex="19430" style="width:70px;" ng-enter="Cancel();" ng-click="Cancel();">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <ul kendo-context-menu="AllergiesAddEditDrugsGridContextMenu" style="width: auto !important;white-space:nowrap"
+        k-show-on="'click'"
+        k-filter="'#divAllergiesAddEditDrugsGrid .allergiesAddEditDrugsGridhasMenu'"
+        k-on-open="onAllergiesAddEditDrugsGridContextMenuOpen(kendoEvent);"
+        id="cmnuAllergiesAddEditDrugsGridContextMenu_{{allergiesAddEditGUID}}">
+        <li ng-click="allergiesForPatientAddOrDeleteFromCommonListClickEvent(1);" ng-enter="allergiesForPatientAddOrDeleteFromCommonListClickEvent(1);" ng-show="allergiesAddEditDrugsGridContextMenuAddtoCommonListHideShow">
+            Add to Common List
+        </li>
+        <li ng-click="allergiesForPatientAddOrDeleteFromCommonListClickEvent(2);" ng-enter="allergiesForPatientAddOrDeleteFromCommonListClickEvent(2);" ng-show="allergiesAddEditDrugsGridContextMenuDeleteFromCommonListHideShow">
+            Delete from Common List
+        </li>
+    </ul>
+</form>

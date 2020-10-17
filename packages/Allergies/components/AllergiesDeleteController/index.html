@@ -1,0 +1,74 @@
+﻿<!-- PURPOSE: The purpose of this View is to delete the selected allergy -->
+<!-- CREATED BY: Lakshmi B -->
+<!-- CREATED DATE: 12/05/2014 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+<style type="text/css">
+    .ReasonsforAllergyDeleteGrid .k-grid-content {
+        width: 100%;
+        height: 260px;
+    }
+</style>
+
+
+
+<form id="frmDeleteAllergy" name="frmDeleteAllergy" method="post" role="form">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();">×</i>
+            <label class="ModalPopupHeadings">Reasons for Remove Allergies</label>
+            <i id="btndeleteAllergyListMoreOptions" uib-tooltip="{{deleteAllergyMoreOptions}}" focus-on-default tabindex="19501" style="font-size:30px;cursor:pointer;vertical-align:-webkit-baseline-middle;color:white;margin-left:10px" ng-click="deleteAllergyListViewClick();" ng-enter="deleteAllergyListViewClick();" class="DetailIcon"></i>
+        </div>
+        <div class="modal-body">
+            <div class="row" style="display:none" id="divDeleteAllergyIcons">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <span class="icomoon-plus" id="deleteAllergyOpenAddReason" uib-tooltip="Add Remove Reason" emr-focus-class tabindex="19502" style="font-size:20px;cursor:pointer;vertical-align:middle" ng-enter="deleteAllergyOpenAddReasonPopUp();" ng-click="deleteAllergyOpenAddReasonPopUp();"></span>
+                        <span tabindex="19503" emr-focus-class id="deleteAllergyOpenEditReason" uib-tooltip="Edit Remove Reason" class="brankic-edit" style="font-size:25px;padding-left:10px;cursor:pointer;vertical-align:middle" ng-enter="deleteAllergyOpenEditReasonPopUp();" ng-click="deleteAllergyOpenEditReasonPopUp();"></span>
+                        <span tabindex="19504" emr-focus-class class="crossmarkclose" uib-tooltip="Delete Remove Reason" style="font-size:25px;cursor:pointer;vertical-align:-webkit-baseline-middle;" ng-enter="deleteAllergySelectedRemoveReason();" ng-click="deleteAllergySelectedRemoveReason();"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <!--<label>Commonly Used Remove Reasons</label>&nbsp;&nbsp;-->
+                        <!--<i id="btnMoreOptionsinDeleteAllergy" style="font-size:30px;cursor:pointer;vertical-align:middle" class="ion-navicon"> </i>-->
+                        <div kendo-grid="deleteAllergiesWidget.grdReasonsforAllergyDelete" tabindex="19505" id="ReasonsforAllergyDeleteGrid" class="ReasonsforAllergyDeleteGrid gridWith5rows_sm" options="reasonsforAllergyDeleteGridOptions"></div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="row" id="divDeleteAllergyEnterReasonstoRemove" style="display:none">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Enter Reasons to Remove</label>
+                        <div>
+                            <textarea id="taDeleteAllergyDescription" focus-on-default focus-on-demand focus-me="taRemoveReasonManualFocus" tabindex="19506" class="form-control" name="taDeleteAllergyDescription" ng-model="alergiesRemoveReasonManual" style="max-height:120px;min-height:70px;resize:none"></textarea>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-12 form-group">
+                    <button type="button" id="divDeleteAllergyOk" tabindex="19507"  data-placement="bottom" class="btn btn-primary" ng-enter="allergiesDeleteRemoveClick();" ng-click="allergiesDeleteRemoveClick();" style="width:70px;display:none">OK</button>
+                    <button type="button"  tabindex="19508" data-placement="bottom" class="btn btn-default" style="width:70px;" ng-enter="Cancel();" ng-click="Cancel();" >Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <ul kendo-context-menu="allergiesDeleteMoreOptionsContextMenu"
+            k-show-on="'click'"
+            k-target="'#btnMoreOptionsinDeleteAllergy'"
+            k-on-select="onDeleteAllergyMoreOptionsContextMenuSelect(kendoEvent);"
+            k-on-open="onMoreOptionsContextMenuOpen(kendoEvent);" style="width:250px !important;">
+            <li>
+                Add / Edit Reasons
+            </li>
+            <li>
+                Delete Reason
+            </li>
+        </ul>
+    </div>
+</form>

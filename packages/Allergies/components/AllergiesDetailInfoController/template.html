@@ -1,0 +1,45 @@
+﻿<!-- PURPOSE: The purpose of this view is to view detail information of allergies -->
+<!-- CREATED BY: Lakshmi B
+<!-- CREATED DATE: 02/20/2015 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED; -->
+
+<style type="text/css">
+    .allergiesDetailInfoGrid .k-grid-content{
+         width: 100%;
+        height: 330px;
+    }
+</style>
+
+<form id="frmAllergiesDetailInfoPoup" name="frmAllergiesDetailInfoPoup" ng-controller="AllergiesDetailInfoController">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();">×</i>
+            <label class="ModalPopupHeadings" style="vertical-align:super">Allergies - Detailed Info</label>
+            <i id="btnAllergiesDetailInfoBriefAndDetailView" uib-tooltip="{{AllergiesDetailInfoBriefAndDetailViewTitle}}" style="font-size:30px;cursor:pointer;vertical-align:-webkit-baseline-middle;color:white;margin-left:10px" ng-click="allergiesDetailInfoBriefAndDetailView();" class="DetailIcon"></i>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select tabindex="28001" ng-change="allergiesDetailInfoGetAllergiesDetailsInfoList()" kendo-drop-down-list="allergiesDetailInfoWidgets.ddlAllergiesStatusList" k-height="410" k-data-text-field="'status'" k-data-value-field="'statusValue'" k-data-source="allergiesDetailInfoDDlDataSource" ng-model="allergiesDetailinfoAllergyStatus" k-value="allergiesDetailinfoAllergyStatus"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div kendo-grid="allergiesDetailInfoWidgets.grdAllergiesDetailInfo" tabindex="28002" emr-grid id="allergiesDetailInfoGrid" class="allergiesDetailInfoGrid gridWith5rows_sm" options="allergiesDetailInfoGridOptions"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="text-align: center">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button class="btn btn-default" style="width: 110px;" tabindex="28003" type="button" ng-click="Cancel();" ng-enter="Cancel();">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,53 @@
+﻿<!-- PURPOSE: The purpose of this is to View Reasons For Not Getting Allergy Info -->
+<!-- CREATED BY: Anusha Ch -->
+<!-- CREATED DATE: 2/24/2015 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED -->
+
+
+
+<style>
+    .reasonsForNotGettingAllergyInfoGrid .k-grid-content {
+        height: 210px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+
+
+<form id="frmReasonsForNotGettingAllergyInfo" name="frmReasonsForNotGettingAllergyInfo" ng-controller="ReasonsForNotGettingAllergyInfoController" method="post" role="form">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();"> ×</i>
+            <label style=" text-overflow: ellipsis;width:300px;white-space: nowrap;overflow:hidden;vertical-align:sub"  class="ModalPopupHeadings">Reasons for Not Getting Allergy Info</label>
+            <i id="btnReasonsForNotGettingAllergyMoreOptions" uib-tooltip="{{reasonsForNotGettingAllergyMoreOptions}}" focus-on-default tabindex="28401" style="font-size:20px;cursor:pointer;vertical-align:baseline;color:white;margin-left:0px" ng-click="reasonsForNotGettingAllergyViewClick();" ng-enter="reasonsForNotGettingAllergyViewClick();" class="DetailIcon"></i>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div kendo-grid="ReasonsForNotGettingAllergyInfoWidgets.ReasonsForNotGettingAllergyInfoGrid" tabindex="28402" id="divReasonsForNotGettingAllergyGrid" options="reasonsForNotGettingAllergyGridOptions" class="reasonsForNotGettingAllergyInfoGrid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="divReasonsForNotGettingAllergyEnterReason" style="display:none">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Enter Reasons</label>
+                        <div>
+                            <textarea id="taReasonsForNotGettingAllergy" maxlength="255" focus-on-demand focus-me="reasonForNotGettingAllergyInfoFromPatientFocus" ng-model="reasonForNotGettingAllergyInfoFromPatient" tabindex="28403" class="form-control" name="taReasonsForNotGettingAllergy" style="max-height:100px;min-height:60px;resize:vertical;resize:none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-12 form-group">
+                    <button type="button" id="divReasonsForNotGettingAllergyOkButton" tabindex="28404" class="btn btn-primary" ng-enter="reasonsForNotGettingAllergyClick();" ng-click="reasonsForNotGettingAllergyClick();" style="width:70px;display:none">OK</button>
+                    <button type="button" class="btn btn-default" tabindex="28405" style="width:70px;" ng-enter="Cancel();" ng-click="Cancel();">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>

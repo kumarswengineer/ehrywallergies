@@ -1,0 +1,20 @@
+{
+  "name": "ehryw_allergies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://kumarswengineer@dev.azure.com/kumarswengineer/ehryw/_git/ehryw_allergies"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "babelrcRoots": [
+    ".",
+    "packages/*"
+  ]
+}

@@ -1,0 +1,40 @@
+﻿<!-- PURPOSE: The purpose of this is to View Allergies Asked but Unknown Allergies Info -->
+<!-- CREATED BY: Anusha Ch -->
+<!-- CREATED DATE: 2/24/2015 -->
+<!-- MODIFIED DEVELOPER: DATE - NAME - WHAT IS MODIFIED -->
+
+<style>
+     .allergiesAskedbutUnknownAllergiesGrid .k-grid-content {
+            height: 210px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+</style>
+
+
+
+<form id="frmAllergiesAskedbutUnknownAllergiesInfo" name="frmAllergiesAskedbutUnknownAllergiesInfo" method="post" role="form" ng-controller="AllergiesAskedbutUnknownAllergiesInfoController">
+    <div destroy-element>
+        <div class="popup-header">
+            <i class="close pull-right" data-dismiss="modal" aria-hidden="true" ng-click="Cancel();"> ×</i>
+            <label class="ModalPopupHeadings">Asked but Unknown Allergies Info</label>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div kendo-grid="allergiesAskedbutUnknownAllergiesWidgets.AskedbutUnknownAllergiesGrid" emr-grid id="divAskedbutUnknownAllergiesGrid" options="allergiesAskedbutUnknownAllergiesGridOptions" class="allergiesAskedbutUnknownAllergiesGrid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button ng-click="allergiesAskedbutUnknownAllergiesInfoOKClick();" ng-enter="allergiesAskedbutUnknownAllergiesInfoOKClick();" tabindex="28302" class="btn btn-primary" style="width:70px;">OK</button>  
+                        <button class="btn btn-default" tabindex="28303" ng-enter="Cancel();" ng-click="Cancel();">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
