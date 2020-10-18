@@ -17,17 +17,17 @@
 ## FEEL FREE TO UPDATE THIS DOCUMENTATION BELOW AS MUCH AS YOU CAN TO REDUCE THE REDUNDANCY
 
 
-<allergies-add-edit-free-text></allergies-add-edit-free-text>
+`<allergies-add-edit-free-text></allergies-add-edit-free-text>`
 
 ### this component is useful in showing the poppup mode of allergies add/edit window
 
 
-<allergies-asked-but-unknown></allergies-asked-but-unknown>
+`<allergies-asked-but-unknown></allergies-asked-but-unknown>`
 
-<allergies-delete></allergies-delete>
+`<allergies-delete></allergies-delete>`
 
-<allergies-detail-info></allergies-detail-info>
+`<allergies-detail-info></allergies-detail-info>`
 
-<allergies-add-edit></allergies-add-edit>
+`<allergies-add-edit></allergies-add-edit>`
 
-<allergies-main-view></allergies-main-view>
+`<allergies-main-view></allergies-main-view>`
